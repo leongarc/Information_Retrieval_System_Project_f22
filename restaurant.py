@@ -12,7 +12,6 @@ class Restaurant:
         self.__state = ""
         self.__postal_code = ""
         self.__stars = ""
-        self.review_count = ""
         self.__hour = ""
         self.__category = ""
 
@@ -82,25 +81,9 @@ class Restaurant:
 
     def set_hour(self, hour):
         self.__hour = hour
-    def add_restaurant(self):
-      try:
-        self.__id = buisness_id_generator()
-        self.__name = input("Buisness name: ")
-        self.__address = input("Buisness address: ")
-        self.__city = input("City: ")
-        self.__state = input("State: ")
-        self.__postal_code = int(input("Postal Code: "))
-        self.__stars = int(input("Star amount: "))
-        self.review_count = int(input("Review count: "))
-        self.__hour = input("Enter hours: ")
-        self.__category = input("Category: ")
-        return True
-      except ValueError:
-        print("Please enter only whole values for postal code, stars, and review count")
-        return False
   
-    ## Magic Method to quickly print restaurant information
+    # Magic Method to quickly print restaurant information
     def __str__(self):
 
-      line = "Name: " + self.__name + ", " + "\nAddress: " + self.__address + ", " + "\nHours: " + self.__hour
+      line = "\nName: " + self.__name + "\nAddress: " + self.__address + "\nHours: " + self.__hour
       return line

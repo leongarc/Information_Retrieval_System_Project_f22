@@ -45,12 +45,11 @@ class RestaurantCatalog(RestaurantAbstract):
                 restaurant = Restaurant()
                 restaurant.set_id(line[0])
                 restaurant.set_name(line[1])
-                # Need to figure out how to add the complete address
-                # Address, City, State, and Postal Code are in seperate columns
-                # Note: Complete address goes from elements 2 through 5 respectively
                 restaurant.set_address(line[2])
-                restaurant.set_hour(line[10])
-                restaurant.set_category(line[9])
+                restaurant.set_postal_code(line[3])
+                restaurant.set_stars(line[7])
+                restaurant.set_category(line[8])
+                restaurant.set_hour(line[9])
 
                 self.__list_restaurant.append(restaurant)
 

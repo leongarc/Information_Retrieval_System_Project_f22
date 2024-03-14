@@ -20,17 +20,14 @@ from hashdict import *
 
 def main():
     
-  MainFunctions.restaurant_pop_test_lldict()
-  MainFunctions.restaurant_catalog_test_lldict()
-
+  #MainFunctions.restaurant_pop_test_lldict()
+  #MainFunctions.restaurant_catalog_test_lldict()
   #MainFunctions.restaurant_insert_test_lldict()
   #MainFunctions.magic_method_str_test()
+#MainFunctions.restaurant_catalog_test_htdict()
     #MainFunctions.search()
     #MainFunctions.terminal_subsearch()
-    #Interface.menu_cl()
-  
-
+        Interface.menu_cl()
 
 if __name__ == "__main__":
     main()
-    

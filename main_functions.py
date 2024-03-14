@@ -2,16 +2,17 @@ from restaurant import Restaurant
 from restaurant_catalog import RestaurantCatalog
 from restaurant_catalog_lldict import RestaurantCatalogLLDict
 from restaurant_catalog_sldict import RestaurantCatalogSLDict
+from restaurant_catalog_hashdict import RestaurantCatalogHashDict
 from simple_term_menu import TerminalMenu
+import random
 
 
 class MainFunctions:
     def magic_method_str_test():
       restaurant = RestaurantCatalogLLDict()
       restaurant.restaurant_info("restaurant_file.csv")
-      #print(str(restaurant))
-      print(len(restaurant))
-      info = restaurant.search_id(id)
+      print(str(restaurant))
+      
     #resturant_class_test - Zachary
     #Test for class(restraurant.py)
     def class_test():
@@ -54,7 +55,7 @@ class MainFunctions:
                   restaurant_info.get_hour())
 
     # Restaurant catalog test LLDict version
-    # Uses linked list dictionary
+    # Uses linked list dictionary - Leo Garcia
     def restaurant_catalog_test_lldict():
         restaurant = RestaurantCatalogLLDict()
         restaurant.restaurant_info("restaurant_file.csv")
@@ -71,16 +72,24 @@ class MainFunctions:
     def restaurant_insert_test_lldict():
         restaurant = RestaurantCatalogLLDict()
         restaurant.restaurant_info("restaurant_file.csv")
+        while True: # Generate unique buisness id/key - Leo
+          id = random.randint(0,9999)
+          key = restaurant.search_id(id)
+          if key == None:
+            key = id
+            break
+        # New restaurant object - Leo
+        new_rest = Restaurant()
+        new_rest.set_id(key)
+        new_rest.set_name(input("Enter name of buisness: "))
+        new_rest.set_address(input("Enter address: "))
+        new_rest.set_hour(input("Enter hours of buisness: "))
+        restaurant.add_restaurant(key, new_rest)
+        
+            
         # call add_restaurant function to test the insertion
-        restaurant.add_restaurant()
+  
         # you are going to ask the user for the restaurant information
-        count = 0
-        field_input = []
-        fields = ['Input New Name: ' , 'Input New Address: ' , 'Input New City: ' , 'Input New State:' , 'Input New Postal Code: ' , 'Input New Star Rating: ' , 'Input New Review Count: ' , 'Input All New Attributes:' , 'Input All New Catergories:' , 'Input New Hours:'
-              ]
-        for field in fields:
-          field_input.append(input(fields[count]))
-          count += 1
         # take the information, create a restaurant object using this information and then
           
         # send that object to the add_restaruant function
@@ -88,8 +97,14 @@ class MainFunctions:
     def restaurant_pop_test_lldict():
         restaurant_list = RestaurantCatalogLLDict()
         restaurant_list.restaurant_info("restaurant_file.csv")
-        key = input("Enter ID: ")
+        print("Number of restaurants: " ,len(restaurant_list))
+        key = input("Enter ID of restaurant to delete: ")
+        restaurant_list.pop_restaurant(key)
+        print("Number of restaurants: " ,len(restaurant_list))
+        
+
         # use the id as input to the delete_restaurant function to remove the restaurant
+        '''
         key = restaurant_list.search_id(id)
         if key == None:
             print("Not found")
@@ -97,7 +112,23 @@ class MainFunctions:
           print("Restaurant deleted")
           restaurant_list.pop_restaurant(key)
           print(restaurant_list)
+        '''
 
+
+      #Hash Table Function- Zachary
+
+    def restaurant_catalog_test_htdict():
+        restaurant = RestaurantCatalogHashDict()
+        restaurant.restaurant_info("restaurant_file.csv")
+        #print(len(restaurant))
+        id = input("Enter Unique ID: ")
+        key = restaurant.search_id(id)
+        if key == None:
+            print("Restaurant not found, please try again\n")
+            print("")
+            MainFunctions.restaurant_catalog_test_htdict()
+        else:
+            print(key)
         # restaurant_catalog_multisearch_test - Zachary Malloy
         # Test for opening and reading restaurant catalog through             different means
     def search():
@@ -156,7 +187,7 @@ class MainFunctions:
             'Stars: ', 'Review Count: ', 'Attributes: ', 'Categories: ',
             'Hours: '
         ]
-        print("Enter Restuarnt information")
+        print("Edit Restuarnt information")
         for field in fields:
             new_restaurant.append(input(fields[count]))
             count += 1
@@ -301,7 +332,7 @@ class MainFunctions:
             field_input = []
             fields = [
                 'Name: ', 'Address: ', 'City: ', 'State: ', 'Postal Code: ',
-                'Stars: ', 'Review Count: ', 'Attributes: ', 'Categories: ',
+                'Stars: ', 'Attributes: ', 'Categories: ',
                 'Hours: '
             ]
 

@@ -1,6 +1,13 @@
 from restaurant_catalog import RestaurantCatalog
 from simple_term_menu import TerminalMenu
 from main_functions import MainFunctions
+from restaurant_catalog_hashdict import RestaurantCatalogHashDict
+from restaurant_catalog_lldict import RestaurantCatalogLLDict
+
+import time
+
+import random
+
 
 class Interface:
 
@@ -67,7 +74,8 @@ class Interface:
                         restaurant_info = restaurant.search_name(name)
                         print("\nName: " + restaurant_info.get_name() + ", " +
                               "\n\nAddress: " + restaurant_info.get_address() +
-                              ", " + "\n\nHours: " + restaurant_info.get_hour())
+                              ", " + "\n\nHours: " +
+                              restaurant_info.get_hour())
                     if sub_sel == 2:
                         restaurant = RestaurantCatalog()
                         restaurant.restaurant_info("restaurant_file.csv")
@@ -85,16 +93,16 @@ class Interface:
                               "\nAddress: " + restaurant_info.get_address() +
                               ", " + "\nHours: " + restaurant_info.get_hour())
                     if sub_sel == 4:
-                      edit_menu_back = True
+                        edit_menu_back = True
                 edit_menu_back = False
 
             # Add restaurant selection - Leo Garcia
             elif main_sel == 1:
-              MainFunctions.add_restaurant_test()
+                MainFunctions.add_restaurant_test()
             # Edit restaurant selection - Leo Garcia
             elif main_sel == 2:
-              MainFunctions.edit_restaurant_test()
+                MainFunctions.edit_restaurant_test()
             # Exit Program - Leo Garcia
             elif main_sel == 3:
-              print("Sucessfully Exited")
-              main_menu_exit = True
+                print("Sucessfully Exited")
+                main_menu_exit = True

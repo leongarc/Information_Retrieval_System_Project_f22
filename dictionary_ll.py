@@ -32,7 +32,7 @@ class LLDict(DictAbstract):
                 result += ", " + str(node.value)
                 node = node.next
         return result
-    # Lenth of LL - Leo Garcia
+    # Length of LL - Leo Garcia
     def __len__(self):
         return self._length
 
@@ -41,14 +41,14 @@ class LLDict(DictAbstract):
 
     def __getitem__(self, key):
         node = self._search(key)
-        print(key)
         if node == None:
-            raise KeyError("Does not exist888")
+            raise KeyError("Does not exist")
         return node.value
-
+      
+    # Search though list linearly with while loop - Leo Garcia
     def _search(self, key):
         current = self._head
-        while current != None:
+        while current != None: # Search through list linearly
             if current.key == key:
                 return current  # Key found
 
@@ -58,13 +58,9 @@ class LLDict(DictAbstract):
 
     def __setitem__(self, key, value):
       self._insert(key, value)
-      """
-        if self._head == None:
-            return None
-        else:
-            self._insert(key, value)
-      """
+     
     # Insert new node to end of list - Leo Garcia
+    # Geeks 4 Geeks helped with implementation
     def _insert(self, key, value):
         new_node = _LLNode(key, value)
 
@@ -72,23 +68,49 @@ class LLDict(DictAbstract):
         #    new node as head
         if self._head is None:
             self._head = new_node
+            self._length += 1
+
             return
 
         # Else traverse till the last node
         last = self._head
         while (last.next):
             last = last.next
+        
+
 
         # Change the next of last node
         last.next = new_node
+        self._length += 1
 
-#Remove/Pop - Zachary Malloy
-      
+#Remove/Pop - Zachary Malloy 
+# Geeks for Geeks helped with implementation
     def pop(self, key):
-        value = self[key]
-        self._head = self._remove(key)
+        temp = self._head
+ 
+        # If head node itself holds the key to be deleted
+        if temp is not None:
+            if temp.key == key:
+                self._head = temp.next
+                temp = None
+                self._length -= 1
+                return
+ 
+        # Search for the key to be deleted, keep track of the
+        # previous node as we need to change 'prev.next'
+        while temp is not None:
+            if temp.key == key:
+                break
+            prev = temp
+            temp = temp.next
+ 
+        # if key was not present in linked list
+        if temp == None:
+            return
+ 
+        # Unlink the node from linked list
+        prev.next = temp.next
+ 
+        temp = None
         self._length -= 1
-        return value
-
-    def _remove(self, key):
-        assert key is not None, "Does not exist"
+         
