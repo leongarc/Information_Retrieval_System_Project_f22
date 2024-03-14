@@ -21,9 +21,9 @@ class LLDict(DictAbstract):
     def __init__(self):
         self._head = None
         self._length = 0
-
+    # String magic method - Leo Garcia
     def __str__(self):
-        result = "["
+        result = ""
         node = self._head
         if node != None:
             result += str(node.value)
@@ -31,9 +31,8 @@ class LLDict(DictAbstract):
             while node:
                 result += ", " + str(node.value)
                 node = node.next
-        result += "]"
         return result
-
+    # Lenth of LL - Leo Garcia
     def __len__(self):
         return self._length
 
@@ -65,7 +64,7 @@ class LLDict(DictAbstract):
         else:
             self._insert(key, value)
       """
-    # Insert new node to end of list
+    # Insert new node to end of list - Leo Garcia
     def _insert(self, key, value):
         new_node = _LLNode(key, value)
 

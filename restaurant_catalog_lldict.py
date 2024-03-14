@@ -1,4 +1,4 @@
-# by Leo Garcia
+ # by Leo Garcia
 from dictionary_ll import *
 from abstract import *
 from restaurant import Restaurant
@@ -7,7 +7,7 @@ import random
 
 class RestaurantCatalogLLDict(RestaurantAbstract):
   def __init__(self):
-    self.__list_restaurant = LLDict()
+      self.__list_restaurant = LLDict()
 
   def search_id(self, id):
     if id in self.__list_restaurant: 
@@ -32,9 +32,9 @@ class RestaurantCatalogLLDict(RestaurantAbstract):
 
   
   def pop_restaurant(self, key):
-    self.__list_restaurant.pop(key)
+    self.__list_restaurant._remove(key)
     
-  def save_restaurant(self):
+  def save_restaurant(self): 
     with open('test24.csv', 'w+', newline = '') as file:
       write = csv.writer(file)
       for x in range(21):
@@ -45,6 +45,7 @@ class RestaurantCatalogLLDict(RestaurantAbstract):
   def add_restaurant(value):
       if self.search_id(key) == None:
         self.__list_restaurant._insert(key, value)
+        
       
   def search_address(self, address):
     if address in  self.__list_restaurant:
@@ -57,4 +58,10 @@ class RestaurantCatalogLLDict(RestaurantAbstract):
   def search_name(self, name):
     if name in self.__list_restaurant:
       return self.__list_restaurant[name]
-        
+
+
+  def __str__(self):
+    return str(self.__list_restaurant)
+
+  def __len__(self):
+    return len(self.__list_restaurant)

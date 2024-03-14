@@ -1,4 +1,4 @@
-'''
+
 from abstract import *
 
 #HashDict - Zachary Malloy
@@ -15,18 +15,18 @@ class HTDict(DictAbstract):
 
   #Gotta fix
   def _get_index(self, key, value):
-  while self.keys[key_index]:
-    if self.__keys[key_index] == key:
-      self.__value[key_index] == Value
+    while self.keys[key_index]:
+      if self.__keys[key_index] == key:
+        self.__value[key_index] == Value
 
     key_index = (index + 1) % self.list_dict
 
   def _find(self, parent_list, key):
     for index in range(len(parent_list)):
       node = parent_list[index]
-      [i_key, i_value] = node
+      [key, value] = node
       if i_key == key:
-        return [index, i_value]
+        return [index, value]
     return None
 
   def remove(self, key):
@@ -60,5 +60,3 @@ class HTDict(DictAbstract):
       [_, value] = find_result
 
       return value
-
-        '''

@@ -6,10 +6,15 @@ from simple_term_menu import TerminalMenu
 
 
 class MainFunctions:
+    def magic_method_str_test():
+      restaurant = RestaurantCatalogLLDict()
+      restaurant.restaurant_info("restaurant_file.csv")
+      #print(str(restaurant))
+      print(len(restaurant))
+      info = restaurant.search_id(id)
     #resturant_class_test - Zachary
     #Test for class(restraurant.py)
     def class_test():
-
         #Creating object
         new_restaurant = Restaurant()
         #Inputting information from user
@@ -47,8 +52,9 @@ class MainFunctions:
             print("Name: " + restaurant_info.get_name() + ", " + "Address: " +
                   restaurant_info.get_address() + ", " + "Hours: " +
                   restaurant_info.get_hour())
-      # Restaurant catalog test LLDict version
-      # Uses linked list dictionary
+
+    # Restaurant catalog test LLDict version
+    # Uses linked list dictionary
     def restaurant_catalog_test_lldict():
         restaurant = RestaurantCatalogLLDict()
         restaurant.restaurant_info("restaurant_file.csv")
@@ -61,31 +67,36 @@ class MainFunctions:
         else:
             print(key)
 
+    #Zachary Malloy
     def restaurant_insert_test_lldict():
-      restaurant = RestaurantCatalogLLDict()
-      restaurant.restaurant_info("restaurant_file.csv")
-      
-
-
-            
-    def restaurant_pop_test_lldict():
         restaurant = RestaurantCatalogLLDict()
         restaurant.restaurant_info("restaurant_file.csv")
-        id = input("Enter unique ID: ")
-        restaurant_info = restaurant.search_id(id)
-        if restaurant_info == None:
-            print("Restaurant not found, please try again\n")
-            print("")
-            MainFunctions.restaurant_catalog_test()
+        # call add_restaurant function to test the insertion
+        restaurant.add_restaurant()
+        # you are going to ask the user for the restaurant information
+        count = 0
+        field_input = []
+        fields = ['Input New Name: ' , 'Input New Address: ' , 'Input New City: ' , 'Input New State:' , 'Input New Postal Code: ' , 'Input New Star Rating: ' , 'Input New Review Count: ' , 'Input All New Attributes:' , 'Input All New Catergories:' , 'Input New Hours:'
+              ]
+        for field in fields:
+          field_input.append(input(fields[count]))
+          count += 1
+        # take the information, create a restaurant object using this information and then
+          
+        # send that object to the add_restaruant function
+
+    def restaurant_pop_test_lldict():
+        restaurant_list = RestaurantCatalogLLDict()
+        restaurant_list.restaurant_info("restaurant_file.csv")
+        key = input("Enter ID: ")
+        # use the id as input to the delete_restaurant function to remove the restaurant
+        key = restaurant_list.search_id(id)
+        if key == None:
+            print("Not found")
         else:
-            
-            print(restaurant_info)
-            #new_list = restaurant.pop_restaurant(id)
-            #print(list)
-            
-            restaurant.save_restaurant()
-            
-        
+          print("Restaurant deleted")
+          restaurant_list.pop_restaurant(key)
+          print(restaurant_list)
 
         # restaurant_catalog_multisearch_test - Zachary Malloy
         # Test for opening and reading restaurant catalog through             different means
@@ -224,6 +235,7 @@ class MainFunctions:
         new_restaurant.restaurant_info("test.csv")
         new_restaurant.save_restaurant_changes("test.csv")
 
+
 ####################################################### - Zachary Malloy
 
     def terminal_subsearch_test():
@@ -298,5 +310,5 @@ class MainFunctions:
                 count += 1
 
             new_restaurant = RestaurantCatalog()
-            new_restaurant.restaurant_info("test.csv")
-            new_restaurant.save_restaurant_changes("test.csv")
+            new_restaurant.restaurant_info("restaurant_file.csv")
+            new_restaurant.save_restaurant_changes("restaurant_file.csv")
